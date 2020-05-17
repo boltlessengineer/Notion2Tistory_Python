@@ -1,4 +1,5 @@
 # python 3.7.6
+# python 3.8.2
 
 # pip install watchdog
 from watchdog.observers import Observer
@@ -20,7 +21,8 @@ def search_page_title(file_content):
     title = file_content.split('<h1 class="page-title">')[1].split('</h1>')[0]
     # page_title 예외처리.. 제목에 소괄호()가 있으면 <mark> 태그가 붙어있음.
     # mark 태그를 제거
-    title = title.replace("<mark class=\"highlight-gray\">","").replace("</mark>", "")
+    title = title.replace("<mark class=\"highlight-gray\">",
+                          "").replace("</mark>", "")
     file_name = title.split(' - ')[0] + ".html"
     return title, file_name
 
@@ -161,8 +163,8 @@ class MyHandler(FileSystemEventHandler):
                 print("done.")
 
 
-folder_to_track = 'C:\\Users\\seong\\OneDrive\\문서\\BoltlessEngineer\\Notion2Tistory\\html_export'
-folder_destination = 'C:\\Users\\seong\\OneDrive\\문서\\BoltlessEngineer\\Notion2Tistory\\html_tistroy'
+folder_to_track = 'notion'
+folder_destination = 'export'
 event_handler = MyHandler()
 observer = Observer()
 observer.schedule(event_handler, folder_to_track, recursive=True)
