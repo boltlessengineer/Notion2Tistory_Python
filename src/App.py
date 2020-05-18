@@ -248,8 +248,8 @@ def get_folder_name(url, title):
 
 def get_category_name(html):
     split = html.split("</a></td></tr>")[0]
-    num = split.rfind("</span>")
-    return split[(num+7):]
+    num = split.rfind(">")
+    return split[(num+1):]
 
 
 def get_post_num(html):
@@ -271,8 +271,12 @@ def autoChange_HTML(file):  # 경로를 포함한 파일명
     createFolder(folder_path)
     print("thumbnail title is : ")
     print(extract_thumbnail_title(file_content))
+    theme = input(
+        "Want to designate theme color?(input 'y' to use default color) #")
+    if theme == "y":
+        theme = "ffffff"
     make_thumbnail(folder_path, extract_thumbnail_title(
-        file_content), "#FFFFFF")
+        file_content), "#" + theme)
 
     # new_file_name을 파일명으로, folder_destination 경로에 UTF8로 인코딩해서 파일 생성
     new_html_file = open(folder_path + new_file_name +
@@ -339,7 +343,7 @@ class MyHandler(FileSystemEventHandler):
 
 
 folder_to_track = 'notion'
-folder_destination = 'tistory'
+folder_destination = 'C:\\Users\\seong\\OneDrive\\Documents\\Personal\\Blog'
 event_handler = MyHandler()
 observer = Observer()
 observer.schedule(event_handler, folder_to_track, recursive=True)
