@@ -97,7 +97,7 @@ def make_thumbnail(url, thumbnail_text, color):
 
     template_svg_file = open(thumbnail_template_url, "r", encoding='UTF8')
     new_template_svg = open(
-        "assets\\thumbnail_template.svg", "w", encoding='UTF8')
+        "assets\\files\\thumbnail_template.svg", "w", encoding='UTF8')
     template_svg_content = template_svg_file.read()
     template_svg_change_color = template_svg_content.replace(
         "red", "#" + theme_color)
@@ -105,10 +105,10 @@ def make_thumbnail(url, thumbnail_text, color):
     template_svg_file.close()
     new_template_svg.close()
 
-    drawing = svg2rlg("assets\\thumbnail_template.svg")
-    renderPM.drawToFile(drawing, "assets\\template.png", fmt="PNG")
+    drawing = svg2rlg("assets\\files\\thumbnail_template.svg")
+    renderPM.drawToFile(drawing, "assets\\files\\template.png", fmt="PNG")
 
-    image = Image.open('assets\\template.png')
+    image = Image.open('assets\\files\\template.png')
     font_type_GodoB = ImageFont.truetype('assets\\fonts\\godo\\GodoB.ttf', 60)
     font_type_GodoM = ImageFont.truetype('assets\\fonts\\godo\\GodoM.ttf', 60)
     font_type_godoRounded_L = ImageFont.truetype(
